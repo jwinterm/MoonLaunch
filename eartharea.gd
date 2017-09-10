@@ -5,7 +5,8 @@ extends Area2D
 # var b = "textvar"
 
 func _fixed_process(delta):
-	pass
+	#pass
+	print(is_gravity_a_point())
 
 func _ready():
 	# Called every time the node is added to the scene.
