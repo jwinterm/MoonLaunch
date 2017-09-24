@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://rocket.gd" type="Script" id=1]
 [ext_resource path="res://rocket-297573-800px.png" type="Texture" id=2]
 [ext_resource path="res://DebugDraw.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 5.69428, 9.83478, -6.21178, 9.83478 )
+
+[sub_resource type="ColorRamp" id=2]
+
+offsets = FloatArray( 0, 0.502924, 0.994152 )
+colors = ColorArray( 0.992188, 1, 0, 1, 0.90625, 0.390511, 0.0141602, 1, 0.90625, 0.0106201, 0.0106201, 1 )
 
 [node name="Rocket" type="RigidBody2D"]
 
@@ -37,18 +42,44 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 200
+config/lifetime = 1.2
+config/process_mode = 1
+config/offset = Vector2( 0, 20 )
+params/direction = 0.0
+params/spread = 30.0
+params/linear_velocity = 45.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.03
+params/hue_variation = 2.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/final_size = 1.0
+color/color_ramp = SubResource( 2 )
+
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 
 transform/pos = Vector2( 0.571488, 1.47728 )
 transform/scale = Vector2( 1.51812, 3.70819 )
-shape = SubResource( 1 )
+build_mode = 0
+polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 5.69428, 9.83478, -6.21178, 9.83478 )
+shape_range = Vector2( 0, 0 )
 trigger = false
-_update_shape_index = 0
 
 [node name="debug_draw" parent="." instance=ExtResource( 3 )]
 
