@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://rocket.gd" type="Script" id=1]
-[ext_resource path="res://rocket-297573-800px.png" type="Texture" id=2]
+[ext_resource path="res://rocket.png" type="Texture" id=2]
 [ext_resource path="res://DebugDraw.tscn" type="PackedScene" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 5.69428, 9.83478, -6.21178, 9.83478 )
+points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.24971, 7.12876, -6.25212, 6.97128 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -17,9 +22,12 @@ colors = ColorArray( 0.992188, 1, 0, 1, 0.90625, 0.390511, 0.0141602, 1, 0.90625
 [node name="Rocket" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1.51812, 0, 0, 3.70819, 0.571488, 1.47728 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 4 )
+shapes/1/transform = Matrix32( 0.999501, 0, 0, 0.549788, 0.569656, 33.3204 )
+shapes/1/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
@@ -72,14 +80,22 @@ color/color_ramp = SubResource( 2 )
 transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+[node name="ShipCollision" type="CollisionPolygon2D" parent="."]
 
 transform/pos = Vector2( 0.571488, 1.47728 )
 transform/scale = Vector2( 1.51812, 3.70819 )
 build_mode = 0
-polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 5.69428, 9.83478, -6.21178, 9.83478 )
+polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.24971, 7.12876, -6.25212, 6.97128 )
 shape_range = Vector2( 0, 0 )
 trigger = false
+
+[node name="FootCollision" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0.569656, 33.3204 )
+transform/scale = Vector2( 0.999501, 0.549788 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 1
 
 [node name="debug_draw" parent="." instance=ExtResource( 3 )]
 
@@ -101,5 +117,19 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[node name="CollisionLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = -42.0
+margin/right = 55.0
+margin/bottom = -28.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
