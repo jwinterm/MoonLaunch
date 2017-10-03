@@ -1,33 +1,36 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://rocket.gd" type="Script" id=1]
 [ext_resource path="res://rocket.png" type="Texture" id=2]
 [ext_resource path="res://DebugDraw.tscn" type="PackedScene" id=3]
+[ext_resource path="res://skull.png" type="Texture" id=4]
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.24971, 7.12876, -6.25212, 6.97128 )
-
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.12636, 10.0797, -6.34531, 10.0372 )
 
 [sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.502924, 0.994152 )
 colors = ColorArray( 0.992188, 1, 0, 1, 0.90625, 0.390511, 0.0141602, 1, 0.90625, 0.0106201, 0.0106201, 1 )
 
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -0.383606, -41.7704, 7.97868, -32.9347, 17.1299, -17.7879, 18.3921, 2.72333, 11.7654, 32.3858, -12.0592, 32.7013, -18.8438, 2.72333, -15.8459, -16.0524, -10.0081, -29.4636 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 8.6098, 32.5436, 10.5032, 39.3281, -10.6392, 39.3281, -8.43033, 32.5436 )
+
 [node name="Rocket" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1.51812, 0, 0, 3.70819, 0.571488, 1.47728 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 4 )
-shapes/1/transform = Matrix32( 0.999501, 0, 0, 0.549788, 0.569656, 33.3204 )
-shapes/1/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
@@ -82,20 +85,13 @@ texture = ExtResource( 2 )
 
 [node name="ShipCollision" type="CollisionPolygon2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 0.571488, 1.47728 )
 transform/scale = Vector2( 1.51812, 3.70819 )
 build_mode = 0
-polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.24971, 7.12876, -6.25212, 6.97128 )
+polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.12636, 10.0797, -6.34531, 10.0372 )
 shape_range = Vector2( 0, 0 )
 trigger = false
-
-[node name="FootCollision" type="CollisionShape2D" parent="."]
-
-transform/pos = Vector2( 0.569656, 33.3204 )
-transform/scale = Vector2( 0.999501, 0.549788 )
-shape = SubResource( 4 )
-trigger = false
-_update_shape_index = 1
 
 [node name="debug_draw" parent="." instance=ExtResource( 3 )]
 
@@ -131,5 +127,46 @@ margin/bottom = -28.0
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="ShipArea" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="ShipAreaCollision" type="CollisionPolygon2D" parent="ShipArea"]
+
+build_mode = 0
+polygon = Vector2Array( -10.0081, -29.4636, -15.8459, -16.0524, -18.8438, 2.72333, -12.0592, 32.7013, 11.7654, 32.3858, 18.3921, 2.72333, 17.1299, -17.7879, 7.97868, -32.9347, -0.383606, -41.7704 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="FootArea" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FootArea"]
+
+build_mode = 0
+polygon = Vector2Array( -8.43033, 32.5436, -10.6392, 39.3281, 10.5032, 39.3281, 8.6098, 32.5436 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Skull" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
 
 
