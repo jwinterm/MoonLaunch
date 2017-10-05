@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=1]
 
-[ext_resource path="res://rocket.gd" type="Script" id=1]
-[ext_resource path="res://rocket.png" type="Texture" id=2]
-[ext_resource path="res://DebugDraw.tscn" type="PackedScene" id=3]
-[ext_resource path="res://skull.png" type="Texture" id=4]
+[ext_resource path="res://game/rocket/rocket.gd" type="Script" id=1]
+[ext_resource path="res://art/rocket.png" type="Texture" id=2]
+[ext_resource path="res://game/rocket/DebugDraw.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/skull.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 

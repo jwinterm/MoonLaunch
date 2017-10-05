@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=1]
 
-[ext_resource path="res://Level.gd" type="Script" id=1]
-[ext_resource path="res://computerspeakfont.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://timelabel.gd" type="Script" id=3]
-[ext_resource path="res://sun.jpg" type="Texture" id=4]
-[ext_resource path="res://Earth.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Rocket.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Moon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/levels/1/Level1.gd" type="Script" id=1]
+[ext_resource path="res://fonts/computerspeakfont.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://game/gui/hud/timelabel.gd" type="Script" id=3]
+[ext_resource path="res://art/sun.jpg" type="Texture" id=4]
+[ext_resource path="res://game/earth/Earth.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/rocket/Rocket.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/moon/Moon.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ImageTexture" id=1]
 
