@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://game/rocket/rocket.gd" type="Script" id=1]
 [ext_resource path="res://art/rocket.png" type="Texture" id=2]
 [ext_resource path="res://game/rocket/DebugDraw.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/skull.png" type="Texture" id=4]
+[ext_resource path="res://art/explosjon3.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -15,12 +16,29 @@ points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.3797
 offsets = FloatArray( 0, 0.502924, 0.994152 )
 colors = ColorArray( 0.992188, 1, 0, 1, 0.90625, 0.390511, 0.0141602, 1, 0.90625, 0.0106201, 0.0106201, 1 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="Animation" id=3]
+
+resource/name = "explode"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 13 ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -0.383606, -41.7704, 7.97868, -32.9347, 17.1299, -17.7879, 18.3921, 2.72333, 11.7654, 32.3858, -12.0592, 32.7013, -18.8438, 2.72333, -15.8459, -16.0524, -10.0081, -29.4636 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 8.6098, 32.5436, 10.5032, 39.3281, -10.6392, 39.3281, -8.43033, 32.5436 )
@@ -78,7 +96,7 @@ params/anim_initial_pos = 0.0
 randomness/final_size = 1.0
 color/color_ramp = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="RocketSprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
@@ -128,10 +146,32 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="SkullSprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="ExplosionSprite" type="Sprite" parent="."]
+
+texture = ExtResource( 5 )
+vframes = 4
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionSprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/explode = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="ShipArea" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -149,7 +189,7 @@ trigger = false
 [node name="FootArea" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -163,10 +203,5 @@ build_mode = 0
 polygon = Vector2Array( -8.43033, 32.5436, -10.6392, 39.3281, 10.5032, 39.3281, 8.6098, 32.5436 )
 shape_range = Vector2( 0, 0 )
 trigger = false
-
-[node name="Skull" type="Sprite" parent="."]
-
-transform/scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 4 )
 
 
