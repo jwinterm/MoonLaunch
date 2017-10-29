@@ -80,21 +80,21 @@ motion/mirroring = Vector2( 0, 0 )
 
 [node name="Sun" type="Sprite" parent="ParallaxBackground/SunParallax"]
 
-transform/pos = Vector2( 581.094, 214.012 )
+transform/pos = Vector2( 550.787, 1053.52 )
 transform/scale = Vector2( 0.181912, 0.181912 )
 texture = ExtResource( 4 )
 
 [node name="Earth" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 211.028, 755.178 )
+transform/pos = Vector2( 118.524, 868.706 )
 
 [node name="Rocket" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 433.782, 663.086 )
+transform/pos = Vector2( 213.8, 843.193 )
 transform/rot = 290.0
 
 [node name="Moon" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 1138.31, 163.589 )
+transform/pos = Vector2( 507.748, 533.687 )
 
 

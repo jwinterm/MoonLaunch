@@ -6,10 +6,10 @@
 [ext_resource path="res://art/skull.png" type="Texture" id=4]
 [ext_resource path="res://art/explosjon3.png" type="Texture" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.12636, 10.0797, -6.34531, 10.0372 )
+points = Vector2Array( -4.89815, 0.875571, -5.36714, -2.00446, -3.67879, -4.03967, -0.302076, -5.69089, 2.23045, -4.30848, 4.01261, -2.27326, 4.2002, 0.721969, 2.69944, 4.4852, -3.39739, 4.4852 )
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -33,20 +33,20 @@ tracks/0/keys = {
 "values": [ 0, 13 ]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -0.383606, -41.7704, 7.97868, -32.9347, 17.1299, -17.7879, 18.3921, 2.72333, 11.7654, 32.3858, -12.0592, 32.7013, -18.8438, 2.72333, -15.8459, -16.0524, -10.0081, -29.4636 )
-
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 8.6098, 32.5436, 10.5032, 39.3281, -10.6392, 39.3281, -8.43033, 32.5436 )
+points = Vector2Array( 0.1129, -20.6224, 5.52394, -13.5026, 8.51425, -3.81968, 7.94466, 4.43927, 4.45329, 13.0309, -4.87095, 12.983, -7.51745, 4.61906, -8.57324, -4.38927, -5.57625, -13.4988 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 3.80623, 13.3545, 4.77682, 19.1781, -4.72856, 19.2484, -3.63505, 13.3545 )
 
 [node name="Rocket" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1.51812, 0, 0, 3.70819, 0.571488, 1.47728 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -76,7 +76,7 @@ __meta__ = {
 config/amount = 200
 config/lifetime = 1.2
 config/process_mode = 1
-config/offset = Vector2( 0, 20 )
+config/offset = Vector2( 0, 10 )
 params/direction = 0.0
 params/spread = 30.0
 params/linear_velocity = 45.0
@@ -89,7 +89,7 @@ params/tangential_accel = 0.0
 params/damping = 0.0
 params/initial_angle = 0.0
 params/initial_size = 1.0
-params/final_size = 1.03
+params/final_size = 1.17
 params/hue_variation = 2.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
@@ -98,7 +98,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="RocketSprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 0.1, 0.1 )
+transform/scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
 
 [node name="ShipCollision" type="CollisionPolygon2D" parent="."]
@@ -107,7 +107,7 @@ visibility/visible = false
 transform/pos = Vector2( 0.571488, 1.47728 )
 transform/scale = Vector2( 1.51812, 3.70819 )
 build_mode = 0
-polygon = Vector2Array( -11.3815, 0.727529, -10.5982, -4.33918, -6.21178, -8.37972, -0.572069, -11.1376, 5.06765, -8.76453, 9.76742, -4.9164, 10.7074, 0.535122, 6.12636, 10.0797, -6.34531, 10.0372 )
+polygon = Vector2Array( -4.89815, 0.875571, -5.36714, -2.00446, -3.67879, -4.03967, -0.302076, -5.69089, 2.23045, -4.30848, 4.01261, -2.27326, 4.2002, 0.721969, 2.69944, 4.4852, -3.39739, 4.4852 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
@@ -148,11 +148,13 @@ max_lines_visible = -1
 
 [node name="SkullSprite" type="Sprite" parent="."]
 
+visibility/visible = false
 transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 
 [node name="ExplosionSprite" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
@@ -171,7 +173,7 @@ autoplay = ""
 [node name="ShipArea" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -182,14 +184,14 @@ angular_damp = 1.0
 [node name="ShipAreaCollision" type="CollisionPolygon2D" parent="ShipArea"]
 
 build_mode = 0
-polygon = Vector2Array( -10.0081, -29.4636, -15.8459, -16.0524, -18.8438, 2.72333, -12.0592, 32.7013, 11.7654, 32.3858, 18.3921, 2.72333, 17.1299, -17.7879, 7.97868, -32.9347, -0.383606, -41.7704 )
+polygon = Vector2Array( -5.57625, -13.4988, -8.57324, -4.38927, -7.51745, 4.61906, -4.87095, 12.983, 4.45329, 13.0309, 7.94466, 4.43927, 8.51425, -3.81968, 5.52394, -13.5026, 0.1129, -20.6224 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="FootArea" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -200,7 +202,7 @@ angular_damp = 1.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FootArea"]
 
 build_mode = 0
-polygon = Vector2Array( -8.43033, 32.5436, -10.6392, 39.3281, 10.5032, 39.3281, 8.6098, 32.5436 )
+polygon = Vector2Array( -3.63505, 13.3545, -4.72856, 19.2484, 4.77682, 19.1781, 3.80623, 13.3545 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 

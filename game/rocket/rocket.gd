@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-var thrust = Vector2(0, 450)
-var torque = 20000
+var thrust = Vector2(0, 350)
+var torque = 5000
 var shipoverlaps
 var footoverlaps
 var deathtimer 
@@ -37,12 +37,15 @@ func _process(delta):
 	shipoverlaps = get_node("ShipArea").get_overlapping_bodies()
 	footoverlaps = get_node("FootArea").get_overlapping_bodies()
 	if (shipoverlaps.size() > 1):
+		print("Ship overlaps")
 		get_node("SkullSprite").show()
 		get_node("RocketSprite").hide()
 		death()
 	else:
 		get_node("SkullSprite").hide()
 	for i in footoverlaps:
+		if (get_linear_velocity().length() > 30 and i.get_name() != "Rocket"):
+			death()
 		if(i.get_name() == "Moon"):
 			get_node("SkullSprite").show()
 

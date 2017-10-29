@@ -5,12 +5,12 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 200.0
+radius = 80.0
 
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 800.0
+radius = 300.0
 
 [node name="Earth" type="KinematicBody2D"]
 
@@ -27,7 +27,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 0.5, 0.5 )
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
 
 [node name="EarthCollision" type="CollisionShape2D" parent="."]
