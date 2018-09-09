@@ -3,8 +3,7 @@ extends Label
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-
-var time = 0
+var velocity = 0.0
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -12,5 +11,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	time += delta
-	set_text("Time: %8.2f" % time)
+	# velocity = get_node("res://game/rocket/Rocket.tscn").get_linear_velocity()
+	velocity = get_node("../../Rocket").get_linear_velocity().length()
+	#print(velocity)
+	set_text("Velocity: %8.2f" % velocity)

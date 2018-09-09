@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://game/rocket/rocket.gd" type="Script" id=1]
 [ext_resource path="res://art/rocket.png" type="Texture" id=2]
 [ext_resource path="res://game/rocket/DebugDraw.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/skull.png" type="Texture" id=4]
 [ext_resource path="res://art/explosjon3.png" type="Texture" id=5]
+[ext_resource path="res://art/cosmonaut.png" type="Texture" id=6]
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -4.89815, 0.875571, -5.36714, -2.00446, -3.67879, -4.03967, -0.302076, -5.69089, 2.23045, -4.30848, 4.01261, -2.27326, 4.2002, 0.721969, 2.69944, 4.4852, -3.39739, 4.4852 )
@@ -16,9 +17,13 @@ points = Vector2Array( -4.89815, 0.875571, -5.36714, -2.00446, -3.67879, -4.0396
 offsets = FloatArray( 0, 0.502924, 0.994152 )
 colors = ColorArray( 0.992188, 1, 0, 1, 0.90625, 0.390511, 0.0141602, 1, 0.90625, 0.0106201, 0.0106201, 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="ColorRamp" id=3]
 
-resource/name = "explode"
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0, 0, 0, 1, 0.0656281, 0.988281, 0.253042, 1 )
+
+[sub_resource type="Animation" id=4]
+
 length = 1.5
 loop = false
 step = 0.1
@@ -46,7 +51,7 @@ points = Vector2Array( 3.80623, 13.3545, 4.77682, 19.1781, -4.72856, 19.2484, -3
 [node name="Rocket" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1.51812, 0, 0, 3.70819, 0.571488, 1.47728 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -71,10 +76,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="RearThrust" type="Particles2D" parent="."]
 
 config/amount = 200
-config/lifetime = 1.2
+config/lifetime = 1.0
 config/process_mode = 1
 config/offset = Vector2( 0, 10 )
 params/direction = 0.0
@@ -95,6 +100,32 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/final_size = 1.0
 color/color_ramp = SubResource( 2 )
+
+[node name="RevThrust" type="Particles2D" parent="."]
+
+config/amount = 200
+config/lifetime = 1.0
+config/process_mode = 1
+config/offset = Vector2( 0, 10 )
+params/direction = 180.0
+params/spread = 30.0
+params/linear_velocity = 45.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.17
+params/hue_variation = 2.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/final_size = 1.0
+color/color = Color( 0, 0.914062, 0.121399, 1 )
+color/color_ramp = SubResource( 3 )
 
 [node name="RocketSprite" type="Sprite" parent="."]
 
@@ -164,7 +195,7 @@ hframes = 4
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/explode = SubResource( 3 )
+anims/explode = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -205,5 +236,10 @@ build_mode = 0
 polygon = Vector2Array( -3.63505, 13.3545, -4.72856, 19.2484, 4.77682, 19.1781, 3.80623, 13.3545 )
 shape_range = Vector2( 0, 0 )
 trigger = false
+
+[node name="CosmonautSprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 6 )
 
 
