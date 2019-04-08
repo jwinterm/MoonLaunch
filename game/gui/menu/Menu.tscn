@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://art/starfield.jpg" type="Texture" id=1]
 [ext_resource path="res://game/gui/menu/Menu.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://art/Earth-800px.png" type="Texture" id=4]
 [ext_resource path="res://art/rocket.png" type="Texture" id=5]
 [ext_resource path="res://art/1311069131-800px.png" type="Texture" id=6]
+[ext_resource path="res://art/introwavybgm.ogg" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -113,7 +114,7 @@ texture = ExtResource( 4 )
 
 [node name="RocketSprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( -270.814, 493.711 )
+transform/pos = Vector2( 533.554, 491.003 )
 transform/rot = -90.0
 transform/scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
@@ -152,7 +153,20 @@ transform/pos = Vector2( 765.781, 384.52 )
 transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 7 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
 [connection signal="pressed" from="VButtonArray/PlayButton" to="VButtonArray" method="_on_PlayButton_pressed"]
+
+[connection signal="pressed" from="VButtonArray/HelpButton" to="VButtonArray" method="_on_HelpButton_pressed"]
 
 [connection signal="pressed" from="VButtonArray/QuitButton" to="VButtonArray" method="_on_QuitButton_pressed"]
 

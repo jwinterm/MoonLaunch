@@ -5,7 +5,7 @@
 [ext_resource path="res://game/rocket/DebugDraw.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/skull.png" type="Texture" id=4]
 [ext_resource path="res://art/explosjon3.png" type="Texture" id=5]
-[ext_resource path="res://art/cosmonaut.png" type="Texture" id=6]
+[ext_resource path="res://art/Cartoon-Astronaut.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -179,13 +179,11 @@ max_lines_visible = -1
 
 [node name="SkullSprite" type="Sprite" parent="."]
 
-visibility/visible = false
 transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 
 [node name="ExplosionSprite" type="Sprite" parent="."]
 
-visibility/visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
@@ -239,7 +237,8 @@ trigger = false
 
 [node name="CosmonautSprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 0.05, 0.05 )
+transform/pos = Vector2( 1.8245, 2.46402 )
+transform/scale = Vector2( 0.0557921, 0.0564672 )
 texture = ExtResource( 6 )
 
 
